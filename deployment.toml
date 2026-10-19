@@ -1,0 +1,49 @@
+# This deployment of Stigmergy: where its questions, ledger and advisory feed live, where its
+# website is, and which other deployments it reads. Commands read it with --deployment theGOTOguy/bs-live-deployment.
+[deployment]
+name = "Stigmergy live tests (stand-in)"
+host = "github.com"                                        # github.com, your GitHub Enterprise Server, codeberg.org or your Forgejo server
+forge = "github"                                           # what the host runs: github or forgejo
+registry = "theGOTOguy/bs-live-deployment"                 # this repository: open questions, as issues labeled `question`
+ledger = "theGOTOguy/bs-live-ledger"                       # pledges, commitments and receipts (it holds no money)
+advisories = "theGOTOguy/bs-live-advisories"               # correctness advisories, in OSV format
+site = "https://thegotoguy.github.io/bs-live-deployment/"  # where the website is published (empty: not yet known)
+project_owners = ["thegotoguy"]                            # whose projects belong here (empty: any with the stigmergy-project topic)
+# relay = "https://stigmergylab.github.io/relay/"   # a relay: the site shows what other deployments are doing
+# closed = true                                    # an organization's own: nothing leaves it (docs/self-hosting.md)
+
+# The SSH public key this deployment's event log (log/ on its site) is signed with. The site
+# workflow signs with the private key, kept in the registry's secret STIGMERGY_EVENTS_KEY.
+# [events]
+# key = "ssh-ed25519 AAAA..."
+
+# Other deployments this one reads (their questions and leaderboards, shown labeled on the site,
+# and questions you choose to mirror). Never written to; their money and rankings stay theirs.
+# [[peers]]
+# registry = "stigmergylab/registry"
+# host = "github.com"
+# forge = "github"
+# name = "Stigmergy"
+
+# Labelers whose labels the site applies: what they label hide is left out; warn and inform show as badges.
+# [[labelers]]
+# repo = "stigmergylab/labels"
+# policy = {disputed = "inform"}
+
+# Feeds the site shows on its Now page, besides its own (docs/feeds.md). Each is read when the site is
+# built, and only the questions, tasks and projects this deployment or its peers have are shown.
+# [[feeds]]
+# name = "python-tasks"
+# url = "https://alice.github.io/python-tasks/feed.json"
+
+# What other hosts run, where a citation names one and it isn't github.com or codeberg.org. A host
+# not listed is asked (/api/v1/version for Forgejo, /api/v3/meta for GitHub Enterprise Server).
+# [[hosts]]
+# host = "git.lab.example"
+# forge = "forgejo"
+
+# Where portable identities (DIDs) are resolved: the PLC directory (default https://plc.directory)
+# and a DNS-over-HTTPS resolver for handles' TXT records (default: none).
+# [identity]
+# plc_directory = "https://plc.directory"
+# doh = "https://cloudflare-dns.com/dns-query"
